@@ -1,13 +1,17 @@
 # PT-G
-Text generator, bash IA.
+Bash text generator.
 
 ## Separating all words
 
-`grep -Eo "[^ ]+ " dataset.txt`
+We'll use a dataset of Cioran quotes...
 
-With grep you can filter texts with REGEX. In this case, we use extended REGEX (-E) and print only matches (-o).
-`"[^ ]+ "` Selects a group any characters (excluding space) followed by a space.
-The result all words (including their punctuation). 
+```bash
+grep -Eo "[^ ]+ " dataset.txt
+```
+
+With grep you can filter texts using REGEX. In this case, we use extended REGEX (-E) and print only matches (-o).
+```"[^ ]+ "``` Selects a group `[]+` of any characters excluding space `^ ` followed by a space ` "`.
+The result is all words (including their punctuation). 
 
 ## Counting occurrences
 
