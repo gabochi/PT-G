@@ -29,7 +29,7 @@ yourself,
 ## Counting occurrences
 
 ```bash
-grep -Eo "[^ ]+ " dataset.txt | sort | uniq -c
+grep -Eo "[^ ]+ " dataset.txt | sort #| uniq -c
 ```
 
 We'll pipe the output to a `sort`:
@@ -50,7 +50,7 @@ yourself,
 zoologist 
 ```
 
-This way, all occurrences will be together and `uniq` command will filter repetitions and, also, count them `-c`.
+This way, all occurrences will be together. Uncomment the `uniq` command to filter out repetitions and, also, count them `-c`.
 
 We will not use the number of occurrences BUT if we pick a random word from a set which includes all repetitions, the probabilities of each word will depend on it's occurrences. **We're working with probabilities without doing any math!**
 
