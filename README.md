@@ -52,6 +52,22 @@ zoologist
 
 This way, all occurrences will be together. Uncomment the `uniq` command to filter out repetitions and, also, count them `-c`.
 
+**Tip: we can pass the `uniq` output to another `sort -n` and get them in incremental order:**
+
+```
+...
+11 all 
+12 that 
+16 in 
+20 a 
+21 and 
+21 is 
+25 of 
+30 the 
+31 I 
+32 to
+```
+
 We will not use the number of occurrences BUT if we pick a random word from a set which includes all repetitions, the probabilities of each word will depend on it's occurrences. **We're working with probabilities without doing any math!**
 
 ## Pick a random word
