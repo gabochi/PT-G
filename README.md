@@ -57,7 +57,7 @@ This way, all occurrences will be together and `uniq` command fill filter repeti
 
 Take a look at this command:
 
-```
+```bash
 grep -Eo "[^ ]+ " dataset.txt | shuf
 ```
 
@@ -99,14 +99,73 @@ grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 3 | tr -d "\n" # remove new lines
 ```
 
 ```
-no be confessions
+absolutely their nothing;
 ```
 
 ---
 
-`grep "\." dataset.txt`
+## First improove: where to stop?
 
-`while true; do WORD=$(grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 1); echo -n "$WORD"; [ "$(echo "$WORD" | grep "\." )" != "" ] && break; done`
+That was nice but sentences can have more than three words and usualy end with a period. Let's look for endings in the dataset:
+
+```bash
+grep -Eo "[^ ]\." dataset.txt # Show groups of characters excluding spaces followed by a period
+```
+*The period is a REGEX reserved character, so we must escape it to match a litteral*
+
+```
+late.
+postponed.
+optimists.
+dreams.
+myself.
+knows.
+yourself.
+anyone.
+humanity.
+man.
+little.
+alone.
+one.
+satisfies.
+us.
+solitude.
+idleness.
+anything.
+ape.
+end.
+activity.
+rebelled.
+anything....
+gorilla.
+somewhere.
+is.
+living.
+reason.
+someone.
+existence.
+spot.
+only.
+ashes.
+others.
+insignificance.
+existence.
+other.
+silent.
+group.
+activities.
+him.
+all.
+roots.
+you.
+happiness.
+preposterous.
+```
+
+Great! Run this oneliner and see what happens:
+```bash
+while true; do WORD=$(grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 1); echo -n "$WORD"; [ "$(echo "$WORD" | grep "\." )" != "" ] && break; done
+```
 
 ```bash
 while true 
