@@ -9,7 +9,7 @@ We'll use a dataset of Cioran quotes...
 grep -Eo "[^ ]+ " dataset.txt
 ```
 
-With grep you can filter texts using REGEX. In this case, we use extended REGEX (-E) and print only matches (-o).
+With `grep` you can filter texts using REGEX. In this case, we use extended REGEX (-E) and print only matches (-o).
 ```"[^ ]+ "``` Selects a group `[]+` of any characters excluding space `^ ` followed by a space `" "`.
 The result is a word per line, *including punctuation*:
 
@@ -50,7 +50,7 @@ yourself,
 zoologist 
 ```
 
-This way, all occurrences will be together and `uniq` command fill filter repetitions and, also, count them `-c`.
+This way, all occurrences will be together and `uniq` command will filter repetitions and, also, count them `-c`.
 
 We will not use the number of occurrences BUT if we pick a random word from a set which includes all repetitions, the probabilities of each word will depend on it's occurrences. **We're working with probabilities without doing any math!**
 
