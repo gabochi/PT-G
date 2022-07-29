@@ -1,5 +1,5 @@
 # PT-G
-Bash text generator.
+Markovian bash text generator.
 
 ## Separating all words
 
@@ -44,7 +44,6 @@ a
 ...
 your 
 your 
-your 
 yourself 
 yourself 
 yourself, 
@@ -52,6 +51,8 @@ zoologist
 ```
 
 This way, all occurrences will be together and `uniq` command fill filter repetitions and, also, count them `-c`.
+
+We will not use the number of occurrences BUT if we pick a random word from a set which includes all repetitions, the probabilities of each word will depend on it's occurrences. **We're working with probabilities without doing any math!**
 
 ## Pick a random word
 
@@ -119,47 +120,7 @@ postponed.
 optimists.
 dreams.
 myself.
-knows.
-yourself.
-anyone.
-humanity.
-man.
-little.
-alone.
-one.
-satisfies.
-us.
-solitude.
-idleness.
-anything.
-ape.
-end.
-activity.
-rebelled.
-anything....
-gorilla.
-somewhere.
-is.
-living.
-reason.
-someone.
-existence.
-spot.
-only.
-ashes.
-others.
-insignificance.
-existence.
-other.
-silent.
-group.
-activities.
-him.
-all.
-roots.
-you.
-happiness.
-preposterous.
+...
 ```
 
 Great! Run this oneliner and see what happens:
@@ -187,26 +148,69 @@ done
 
 ---
 
-`grep -Eo "[A-Z][^ ]+ " dataset.txt`
+## Second improove: How to start?
+
+Now that we have an ending, we need a proper start. We can see all words starting with capital letters:
 
 ```bash
-echo -n "$(grep -Eo "[A-Z][^ ]+ " dataset.txt | shuf | head -n 1)"
-while true 
+grep -Eo "[A-Z][^ ]+ " dataset.txt
+```
+
+```
+It 
+Only 
+The 
+Wouldn’t 
+Then 
+...
+```
+
+Incorporate this to the previous script:
+
+```bash
+echo -n "$(grep -Eo "[A-Z][^ ]+ " dataset.txt | shuf | head -n 1)" # start with a word with capital letter
+
+while true                                                         # loop
 do 
-    WORD=$(grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 1)
-    echo -n "$WORD"
-    [ "$(echo "$WORD" | grep "\." )" != "" ] && break
+    WORD=$(grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 1)       # pick random word
+    echo -n "$WORD"                                                # print it, no new line
+    [ "$(echo "$WORD" | grep "\." )" != "" ] && break              # break if it has a period
 done
 ```
 
-`grep -Eo "you [^ ]+ " dataset.txt | sed "s/you //g"`
+---
+
+## The third is the winning: Better generation
+
+We can do better than this. What if we filter words that follows a particular word:
+
+```bash
+grep -Eo "you [^ ]+ " dataset.txt #| sed "s/you //g"
+```
+*Uncomment the `sed` instruction to remove the first word*
+
+```
+you always 
+you do 
+you have 
+you are 
+you would 
+you achieve 
+you cry 
+you are
+```
+
+### Markov chain
+A Markov chain is a sequence of possible events that depend only on the previous state. If we could pick a random word but in the set of words that follow the last word, sentences will make a little more "sence".
+
+Let's include all we learned in a final script:
 
 ```bash
 #!/bin/bash
 
-##########################
-# Better PText Generator #
-##########################
+############################
+# Markovian Text Generator #
+############################
 
 # Select init word with capital letter
 WORD="$(grep -Eo "[A-Z][^ ]+ " dataset.txt | shuf | head -n 1)"
