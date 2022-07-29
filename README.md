@@ -105,7 +105,7 @@ absolutely their nothing;
 
 ---
 
-## First improove: where to stop?
+## First improove: Where to stop?
 
 That was nice but sentences can have more than three words and usualy end with a period. Let's look for endings in the dataset:
 
