@@ -163,18 +163,29 @@ preposterous.
 ```
 
 Great! Run this oneliner and see what happens:
+
 ```bash
 while true; do WORD=$(grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 1); echo -n "$WORD"; [ "$(echo "$WORD" | grep "\." )" != "" ] && break; done
 ```
 
+```
+and on a to when lives in metaphysically only and your roots.
+```
+
+It generates a text of random lenght because loops until a word with a period is found.
+
+Here is the same code but clearer:
+
 ```bash
-while true 
+while true                                                   # starts a loop
 do 
-    WORD=$(grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 1)
-    echo -n "$WORD"
-    [ "$(echo "$WORD" | grep "\." )" != "" ] && break
+    WORD=$(grep -Eo "[^ ]+ " dataset.txt | shuf | head -n 1) # pick a random word
+    echo -n "$WORD"                                          # print the word, no new line
+    [ "$(echo "$WORD" | grep "\." )" != "" ] && break        # break the loop if there's a period in the word
 done
 ```
+
+---
 
 `grep -Eo "[A-Z][^ ]+ " dataset.txt`
 
