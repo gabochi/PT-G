@@ -236,3 +236,9 @@ done
 # New line
 echo
 ```
+
+## Final thoughts
+
+I'll leave you with a final thought from out markovian Cioran:
+
+`I'd like someone who observed gorillas in philosophical systems, fight for novelty is all too weak for weaknesses in everyday, in philosophical systems, fight for moral and dreams.`
